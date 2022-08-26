@@ -1,0 +1,50 @@
+{
+  "name": "fivem-mock-server",
+  "version": "0.0.0-1",
+  "description": "Mock server for FiveM",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:antonstjernquist/react-fivem-hooks.git",
+  "author": "Anton Stjernquist <antonstjernquist@gmail.com>",
+  "license": "BSD-3",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@citizenfx/server": "^2.0.5834-1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.7.13",
+    "jest": "^28.0.0",
+    "jest-environment-jsdom": "^29.0.1",
+    "rollup": "^2.78.1",
+    "ts-jest": "^28.0.8",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "jest": {
+    "verbose": true,
+    "roots": [
+      "<rootDir>"
+    ],
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.js"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.+(ts|tsx|js)",
+      "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "declaration": true,
+    "types": ["@citizenfx/server", "@types/node", "@types/jest"]
+  },
+  "include": ["src"]
+}
