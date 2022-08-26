@@ -18,7 +18,7 @@ export interface ServerSettings {
   endpoints?: string[];
 }
 
-class Server {
+export class MockServer {
   app?: Application;
   isActive: boolean;
 
@@ -82,5 +82,3 @@ function createEndpoint(eventName: string): [string, RequestHandler] {
     },
   ];
 }
-
-export default Server;

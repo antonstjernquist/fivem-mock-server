@@ -1,4 +1,4 @@
-import Server, { ServerSettings } from '..';
+import { MockServer, ServerSettings } from '..';
 
 const originalGlobal = global;
 beforeEach(() => {
@@ -9,7 +9,7 @@ beforeEach(() => {
 describe('Server SDK', () => {
   describe('isActive', () => {
     test('should NOT populate global space when FALSE', () => {
-      new Server({
+      new MockServer({
         isActive: false,
         resourceName: 'hotreload',
       });
@@ -18,7 +18,7 @@ describe('Server SDK', () => {
     });
 
     test('should populate global space when TRUE', () => {
-      new Server({
+      new MockServer({
         isActive: true,
         resourceName: 'hotreload',
       });
@@ -37,18 +37,18 @@ describe('Server SDK', () => {
       resourceName: 'hotreload',
     };
     test('should return resourceName for GetCurrentResourceName', () => {
-      new Server(config);
+      new MockServer(config);
 
       expect(global.GetCurrentResourceName()).toBe('hotreload');
     });
 
     test('should init global.LoadResourceFile', () => {
-      new Server(config);
+      new MockServer(config);
       expect(global.LoadResourceFile).not.toBe(undefined);
     });
 
     test('should return name for player with GetPlayerName (number)', () => {
-      new Server({
+      new MockServer({
         ...config,
         players: [
           {
@@ -62,7 +62,7 @@ describe('Server SDK', () => {
     });
 
     test('should return name for player with GetPlayerName (string)', () => {
-      new Server({
+      new MockServer({
         ...config,
         players: [
           {
@@ -76,7 +76,7 @@ describe('Server SDK', () => {
     });
 
     test('should not throw when trying to get name from non-existing player', () => {
-      new Server({
+      new MockServer({
         ...config,
         players: [
           {
@@ -90,7 +90,7 @@ describe('Server SDK', () => {
     });
 
     test('should return license in an array for getPlayerIdentifiers', () => {
-      new Server({
+      new MockServer({
         ...config,
         players: [
           {
@@ -104,7 +104,7 @@ describe('Server SDK', () => {
     });
 
     test('should return / for GetResourcePath', () => {
-      new Server({
+      new MockServer({
         ...config,
         players: [
           {
@@ -118,7 +118,7 @@ describe('Server SDK', () => {
     });
 
     test('should return values for GetConvar for mysql string', () => {
-      new Server({
+      new MockServer({
         ...config,
         mysqlConnection: 'mysql://root:bruv@localhost/dev',
       });
@@ -129,7 +129,7 @@ describe('Server SDK', () => {
     });
 
     test('should add convars to global', () => {
-      new Server({
+      new MockServer({
         ...config,
         variables: {
           mysql_connection_string: 'mysql://root:bruv@localhost/dev',
@@ -142,7 +142,7 @@ describe('Server SDK', () => {
     });
 
     test('should add exports to global', () => {
-      new Server({
+      new MockServer({
         ...config,
         variables: {
           mysql_connection_string: 'mysql://root:bruv@localhost/dev',
@@ -164,7 +164,7 @@ describe('Server SDK', () => {
     });
 
     test('should listen to events with on sent by emit', () => {
-      new Server({
+      new MockServer({
         ...config,
       });
 
@@ -176,7 +176,7 @@ describe('Server SDK', () => {
     });
 
     test('should NOT listen to events with on sent by emitNet', () => {
-      new Server({
+      new MockServer({
         ...config,
       });
 
@@ -194,7 +194,7 @@ describe('Server SDK', () => {
 
   describe('Endpoints', () => {
     test('should init Express with port', () => {
-      const server = new Server({
+      const server = new MockServer({
         isActive: true,
         resourceName: 'anything',
         port: 6000,
@@ -203,7 +203,7 @@ describe('Server SDK', () => {
     });
 
     test('should create endpoint from config', () => {
-      const server = new Server({
+      const server = new MockServer({
         isActive: true,
         resourceName: 'anything',
         endpoints: ['pefcl:getAccounts', 'npwd:getUser'],
