@@ -68,7 +68,7 @@ function createEndpoint(eventName: string): [string, RequestHandler] {
     endpoint,
     async (_req, res) => {
       /* Emit event on the server that was sent by NUI */
-      emitNet(eventName, responseEventName);
+      emitNet(eventName, responseEventName, req.body);
 
       /* Wait for response from your resource handler */
       const result = await new Promise(resolve => {
