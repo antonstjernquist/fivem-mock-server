@@ -1,4 +1,5 @@
 import express, { Application, RequestHandler } from 'express';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import { initGlobalVariables } from './globals';
 
@@ -30,6 +31,7 @@ export class MockServer {
 
       this.app = express();
       this.app.use(cors());
+      this.app.use(bodyParser());
 
       this.app.post('/', (_req, res) => {
         res.send(
