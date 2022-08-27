@@ -66,7 +66,7 @@ function createEndpoint(eventName: string): [string, RequestHandler] {
 
   return [
     endpoint,
-    async (_req, res) => {
+    async (req, res) => {
       /* Emit event on the server that was sent by NUI */
       emitNet(eventName, responseEventName, req.body);
 
