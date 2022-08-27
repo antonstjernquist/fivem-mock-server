@@ -75,7 +75,7 @@ function createEndpoint(eventName: string): [string, RequestHandler] {
       /* Wait for response from your resource handler */
       const result = await new Promise(resolve => {
         onNet(responseEventName, (_source: number, resp: { data: unknown }) => {
-          resolve(resp.data);
+          resolve(resp);
         });
       });
 
