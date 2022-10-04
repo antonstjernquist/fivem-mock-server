@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import { readFileSync } from 'fs';
 import path from 'path';
-import { Player, ServerSettings } from '.';
+import { Player, ResourceStatus, ServerSettings } from '.';
 
 export const initGlobalVariables = (settings: ServerSettings) => {
   const baseDir = path.resolve(__dirname + '/../../');
@@ -25,6 +25,10 @@ export const initGlobalVariables = (settings: ServerSettings) => {
 
   global.GetCurrentResourceName = () => {
     return settings.resourceName;
+  };
+
+  global.GetResourceState = (resource: string): ResourceStatus => {
+    return settings.resourceStates[resource] ?? 'uninitialized';
   };
 
   global.LoadResourceFile = (_resourceName: string, fileName: string) => {

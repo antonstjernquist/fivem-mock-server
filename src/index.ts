@@ -8,6 +8,15 @@ export interface Player {
   license: string;
 }
 
+export type ResourceStatus =
+  | 'missing'
+  | 'started'
+  | 'starting'
+  | 'stopped'
+  | 'stopping'
+  | 'uninitialized'
+  | 'unknown';
+
 export interface ServerSettings {
   isActive: boolean;
   resourceName: string;
@@ -17,6 +26,7 @@ export interface ServerSettings {
   variables?: Record<string, string>;
   exports?: Record<string, Record<string, CallableFunction>>;
   endpoints?: string[];
+  resourceStates?: Record<string, ResourceStatus>;
 }
 
 export class MockServer {
