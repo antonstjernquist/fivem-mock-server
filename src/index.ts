@@ -43,7 +43,7 @@ export class MockServer {
       this.app.use(cors());
       this.app.use(bodyParser());
 
-      this.app.post('/', (_req, res) => {
+      this.app.get('/', (_req, res) => {
         res.send(
           'This is a mocked version of a Fivem Server. Available endpoints are: ' +
             settings?.endpoints?.join(' ,')
@@ -56,7 +56,7 @@ export class MockServer {
       const port = settings.port ?? 5005;
 
       this.app.listen(port, () => {
-        console.log(`FiveM Mock Server listening on port ${port}`);
+        console.log(`FiveM Mock Server available at http://localhost:${port}`);
       });
     }
   }
